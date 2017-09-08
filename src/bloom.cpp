@@ -195,6 +195,10 @@ bool CBloomFilter::IsRelevantAndUpdate(const CTransaction& tx)
             if (data.size() != 0 && contains(data))
                 return true;
         }
+        for (unsigned int i = 0; i < txin.scriptWitness.stack.size(); i++) {
+            if (contains(txin.scriptWitness.stack[i]))
+                return true;
+        }
     }
 
     return false;
